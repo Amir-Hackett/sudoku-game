@@ -48,6 +48,8 @@ function setGame() {
         for (let c=0; c < 9; c++) {
             let tile = document.createElement("div");
             tile.id = r.toString() + "_" + c.toString();
+            tile.innerText = board[r][c];
+            tile.addEventListener("click", selectTile)
             tile.classList.add("tile");
             document.getElementById("board").append(tile);
         }
@@ -60,4 +62,13 @@ function selectNumber() {
     }
     numSelected = this;
     numSelected.classList.add("number-selected");
+}
+
+function selectTile() {
+    if(numSelected){
+        if (this.innerText != "") {
+            return;
+        }
+        this.innerText = numSelected.id;
+    }
 }
